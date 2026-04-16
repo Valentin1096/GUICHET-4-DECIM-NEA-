@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Opérationnel DECIM — Distribution 2020 kits solaires HOME 40</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #f5f5f0; color: #1a1a1a; font-size: 14px; }
+.header { background: #1F3864; color: #fff; padding: 16px 24px; }
+.header h1 { font-size: 16px; font-weight: 600; }
+.header p { font-size: 12px; color: #aac4e0; margin-top: 4px; }
+.container { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
+.tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+.tab { padding: 8px 14px; font-size: 13px; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; background: #fff; color: #555; transition: all .15s; }
+.tab.active { background: #1F3864; color: #fff; border-color: #1F3864; font-weight: 600; }
+.tab:hover:not(.active) { background: #e8eef5; }
+.panel { display: none; }
+.panel.active { display: block; }
+.card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px; }
+.card-title { font-size: 11px; font-weight: 600; color: #666; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
+.metric { background: #f0f4f8; border-radius: 6px; padding: 14px 16px; }
+.metric-label { font-size: 11px; color: #666; margin-bottom: 6px; }
+.metric-value { font-size: 24px; font-weight: 700; color: #1F3864; }
+.metric-sub { font-size: 11px; color: #999; margin-top: 3px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; font-weight: 600; font-size: 11px; color: #fff; padding: 8px 10px; background: #2E75B6; }
+td { padding: 8px 10px; border-bottom: 1px solid #eee; color: #1a1a1a; vertical-align: top; }
+tr:nth-child(even) td { background: #f7fafd; }
+tr:last-child td { border-bottom: none; }
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+.b-ok { background: #d4edda; color: #155724; }
+.b-warn { background: #fff3cd; color: #856404; }
+.b-err { background: #f8d7da; color: #721c24; }
+.b-info { background: #d1ecf1; color: #0c5460; }
+.b-gray { background: #e9ecef; color: #495057; }
+.step { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #eee; }
+.step:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: #2E75B6; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.step-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #1F3864; }
+.step-desc { font-size: 12px; color: #555; line-height: 1.6; }
+.risk-row { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid #eee; align-items: flex-start; }
+.risk-row:last-child { border-bottom: none; }
+.risk-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.r-high { background: #E24B4A; }
+.r-med { background: #BA7517; }
+.r-low { background: #639922; }
+.risk-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.risk-sol { font-size: 12px; color: #555; line-height: 1.6; }
+.week-block { border: 1px solid #ddd; border-radius: 8px; padding: 14px; margin-bottom: 12px; }
+.week-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px; }
+.week-title { font-size: 13px; font-weight: 700; color: #1F3864; }
+.week-foko { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.foko-chip { font-size: 11px; padding: 3px 10px; border-radius: 12px; border: 1px solid #ccc; background: #f0f4f8; color: #555; }
+.progress-bar { height: 6px; background: #e0e0e0; border-radius: 3px; overflow: hidden; margin-top: 10px; }
+.progress-fill { height: 100%; border-radius: 3px; background: #2E75B6; }
+.kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.kpi-card { background: #f0f4f8; border-radius: 6px; padding: 10px 12px; }
+.kpi-name { font-size: 11px; color: #666; margin-bottom: 4px; }
+.kpi-val { font-size: 20px; font-weight: 700; color: #1F3864; }
+.kpi-freq { font-size: 11px; color: #999; margin-top: 2px; }
+.mono { background: #f0f4f8; border-radius: 6px; padding: 14px 16px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 2; color: #1a1a1a; }
+.inline-badge { font-size: 10px; padding: 2px 6px; border-radius: 8px; background: #d1ecf1; color: #0c5460; font-weight: 600; margin-left: 6px; vertical-align: middle; }
+.legend { display: flex; gap: 16px; font-size: 11px; color: #666; margin-bottom: 10px; align-items: center; flex-wrap: wrap; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+@media (max-width: 600px) {
+  .grid4 { grid-template-columns: 1fr 1fr; }
+  .grid3 { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Plan Opérationnel — Distribution DECIM Guichet 4</h1>
+  <p>2 020 kits HOME 40 · Commune Amboditandroho · Toamasina · 6 avril – 3 mai 2025 · NEA Madagascar</p>
+</div>
+
+<div class="container">
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('org')">Organisation</button>
+  <button class="tab" onclick="showTab('planning')">Planning</button>
+  <button class="tab" onclick="showTab('process')">Process terrain</button>
+  <button class="tab" onclick="showTab('risques')">Risques</button>
+  <button class="tab" onclick="showTab('vitesse')">Vitesse</button>
+  <button class="tab" onclick="showTab('suivi')">Suivi quotidien</button>
+</div>
+
+<!-- ORGANISATION -->
+<div id="tab-org" class="panel active">
+  <div class="grid4">
+    <div class="metric"><div class="metric-label">Kits à distribuer</div><div class="metric-value">2 020</div><div class="metric-sub">HOME 40</div></div>
+    <div class="metric"><div class="metric-label">Durée opération</div><div class="metric-value">4 sem.</div><div class="metric-sub">6 avril → 3 mai</div></div>
+    <div class="metric"><div class="metric-label">Objectif / semaine</div><div class="metric-value">505</div><div class="metric-sub">≥ 500 minimum</div></div>
+    <div class="metric"><div class="metric-label">Fokontany</div><div class="metric-value">12</div><div class="metric-sub">130–180 bénéf. chacun</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Structure d'équipe recommandée</div>
+    <table>
+      <thead><tr><th>Rôle</th><th>Profil</th><th>Nb</th><th>Missions principales</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Chef de site</strong></td><td>CDI</td><td>2</td><td>Coordination fokontany + mairie + DIEH, validation anomalies, supervision data</td></tr>
+        <tr><td><strong>Agent activation ANGAZA</strong></td><td>CDD</td><td>3</td><td>Activation tablette/téléphone, saisie SN + numéro client, vérification connexion</td></tr>
+        <tr><td><strong>Agent administratif</strong></td><td>CDD</td><td>3</td><td>Vérification liste, émargement, collecte CIN + téléphone, fiche bénéficiaire</td></tr>
+        <tr><td><strong>Agent logistique/flux</strong></td><td>CDD</td><td>2</td><td>Réception stock, sortie kits, pose sticker, gestion file d'attente</td></tr>
+        <tr><td style="color:#155724;font-weight:700;">Total</td><td></td><td style="color:#155724;font-weight:700;">10</td><td>2 équipes mobiles de 5 agents chacune</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Répartition en 2 équipes mobiles</div>
+      <table>
+        <thead><tr><th>Équipe</th><th>Composition</th><th>Zone</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-info">Équipe A</span></td><td>1 chef de site + 2 admin + 1 ANGAZA + 1 logistique</td><td>Fokontany 1–6</td></tr>
+          <tr><td><span class="badge b-ok">Équipe B</span></td><td>1 chef de site + 2 admin + 1 ANGAZA + 1 logistique</td><td>Fokontany 7–12</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;font-size:12px;color:#666;">En cas de fokontany dense (>160 bénéf.), les 2 équipes convergent sur le même fokontany.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Cadence journalière réaliste</div>
+      <table>
+        <thead><tr><th>Scenario</th><th>Kits/j/équipe</th><th>Total/j</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-err">Bas (démarrage)</span></td><td>~65</td><td>~130</td></tr>
+          <tr><td><span class="badge b-warn">Normal</span></td><td>~80</td><td>~160</td></tr>
+          <tr><td><span class="badge b-ok">Optimal (rodé)</span></td><td>~100</td><td>~200</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;font-size:12px;color:#666;">Goulot principal : 1 agent ANGAZA par équipe = max ~100 activations/j. Ajouter 1 agent ANGAZA en renfort libère ce goulot.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Poste de distribution — organisation physique du site</div>
+    <table>
+      <thead><tr><th>Zone</th><th>Rôle</th><th>Agent</th></tr></thead>
+      <tbody>
+        <tr><td>Accueil / file</td><td>Gestion file d'attente, numérotation, identification</td><td>Logistique</td></tr>
+        <tr><td>Vérification liste</td><td>Contrôle nom sur liste officielle, CIN, téléphone</td><td>Administratif</td></tr>
+        <tr><td>Émargement</td><td>Signature bénéficiaire + agent, tampon</td><td>Administratif</td></tr>
+        <tr><td>Activation ANGAZA</td><td>Saisie SN kit, activation compte, numéro MSISDN</td><td>ANGAZA</td></tr>
+        <tr><td>Remise kit</td><td>Pose sticker, vérification contenu, remise physique</td><td>Logistique</td></tr>
+        <tr><td>Anomalies</td><td>CIN manquant, absent, erreur liste → gestion séparée</td><td>Chef de site</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PLANNING -->
+<div id="tab-planning" class="panel">
+  <div class="grid2" style="margin-bottom:14px;">
+    <div class="metric"><div class="metric-label">Fokontany/semaine</div><div class="metric-value">3</div><div class="metric-sub">avec buffer intégré</div></div>
+    <div class="metric"><div class="metric-label">Jours par fokontany</div><div class="metric-value">1–2</div><div class="metric-sub">selon volume bénéficiaires</div></div>
+  </div>
+  <div class="week-block">
+    <div class="week-header">
+      <span class="week-title">Semaine 1 — 7–11 avril <span class="inline-badge">Rodage</span></span>
+      <span class="badge b-info">Objectif : 430 kits</span>
+    </div>
+    <p style="font-size:12px;color:#666;">Démarrage sur fokontany les mieux préparés. Objectif volontairement réduit pour tester les processus. 1 jour de marge.</p>
+    <div class="week-foko">
+      <span class="foko-chip">F1 — 160 bénéf. — 2j</span>
+      <span class="foko-chip">F2 — 150 bénéf. — 2j</span>
+      <span class="foko-chip">F3 — 130 bénéf. — 1j</span>
+      <span class="foko-chip">Marge : ven. 11</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:21%"></div></div>
+    <p style="font-size:11px;color:#999;margin-top:4px;">430 / 2020 = 21%</p>
+  </div>
+  <div class="week-block">
+    <div class="week-header">
+      <span class="week-title">Semaine 2 — 14–18 avril <span class="inline-badge">Montée en puissance</span></span>
+      <span class="badge b-info">Objectif : 530 kits</span>
+    </div>
+    <p style="font-size:12px;color:#666;">Équipes rodées. Passage à 3 fokontany. Convergence des 2 équipes sur F5 (>160 bénéf.).</p>
+    <div class="week-foko">
+      <span class="foko-chip">F4 — 140 bénéf. — 1.5j</span>
+      <span class="foko-chip">F5 — 180 bénéf. — 2j (2 équipes)</span>
+      <span class="foko-chip">F6 — 140 bénéf. — 1.5j</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:47%"></div></div>
+    <p style="font-size:11px;color:#999;margin-top:4px;">960 / 2020 = 47% (cumulé)</p>
+  </div>
+  <div class="week-block">
+    <div class="week-header">
+      <span class="week-title">Semaine 3 — 22–25 avril <span class="inline-badge">Vitesse de croisière</span></span>
+      <span class="badge b-info">Objectif : 520 kits</span>
+    </div>
+    <p style="font-size:12px;color:#666;">4 jours ouvrés. F8 en difficulté d'accès : prévoir transport anticipé.</p>
+    <div class="week-foko">
+      <span class="foko-chip">F7 — 150 bénéf. — 2j</span>
+      <span class="foko-chip">F8 — 170 bénéf. — 2j</span>
+      <span class="foko-chip">Rattrapage S1/S2 — 200 bénéf.</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:73%"></div></div>
+    <p style="font-size:11px;color:#999;margin-top:4px;">1480 / 2020 = 73% (cumulé)</p>
+  </div>
+  <div class="week-block">
+    <div class="week-header">
+      <span class="week-title">Semaine 4 — 28 avr.–3 mai <span class="inline-badge">Clôture + Buffer</span></span>
+      <span class="badge b-warn">Objectif : 540 kits + reliquats</span>
+    </div>
+    <p style="font-size:12px;color:#666;">6 jours disponibles dont sam. 3 mai. Fokontany restants + traitement de tous les cas en attente. 2 jours de buffer final.</p>
+    <div class="week-foko">
+      <span class="foko-chip">F9 — 130 bénéf. — 1j</span>
+      <span class="foko-chip">F10 — 160 bénéf. — 2j</span>
+      <span class="foko-chip">F11 — 145 bénéf. — 1.5j</span>
+      <span class="foko-chip">F12 — 145 bénéf. — 1.5j</span>
+      <span class="foko-chip" style="background:#fff3cd;color:#856404;border-color:#ffc107;">Buffer : 2j clôture</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+    <p style="font-size:11px;color:#999;margin-top:4px;">2020 / 2020 = 100%</p>
+  </div>
+  <div class="card">
+    <div class="card-title">Règles de priorisation des fokontany</div>
+    <table>
+      <thead><tr><th>Critère</th><th>Priorité haute</th><th>Priorité basse</th></tr></thead>
+      <tbody>
+        <tr><td>Liste disponible</td><td>Liste validée + signée mairie</td><td>Liste en attente validation</td></tr>
+        <tr><td>Accessibilité</td><td>Centre-ville, accès facile</td><td>Zones périphériques, pistes</td></tr>
+        <tr><td>Connectivité</td><td>Couverture réseau confirmée</td><td>Zone à vérifier ANGAZA</td></tr>
+        <tr><td>Volume</td><td>130–150 bénéf. (1 journée nette)</td><td>>160 : planifier 2 équipes</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PROCESS TERRAIN -->
+<div id="tab-process" class="panel">
+  <div class="card">
+    <div class="card-title">Checklist agent — séquence exacte par bénéficiaire (non négociable)</div>
+    <div class="step"><div class="step-num">1</div><div><div class="step-title">Appel nominal</div><div class="step-desc">L'agent admin appelle le nom exact de la liste officielle. Le bénéficiaire se présente et montre sa CIN.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div><div class="step-title">Vérification liste</div><div class="step-desc">Contrôle nom + numéro d'ordre sur la liste officielle fokontany. Cocher la case présence. Si non sur liste → zone anomalie chef de site, ne pas distribuer.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div><div class="step-title">Collecte CIN</div><div class="step-desc">Copier le numéro CIN exactement tel qu'inscrit. Prendre photo recto/verso si possible. Champ obligatoire : aucun kit sans CIN enregistré.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div><div class="step-title">Collecte téléphone</div><div class="step-desc">Numéro mobile actif obligatoire. Faire composer le numéro sur une tablette pour vérifier l'activité. Si pas de téléphone : insérer celui du chef fokontany. Format : 03X XX XXX XX.</div></div></div>
+    <div class="step"><div class="step-num">5</div><div><div class="step-title">Émargement double</div><div class="step-desc">Le bénéficiaire signe ou appose son empreinte sur le registre papier ET sur le formulaire numérique. L'agent co-signe. Date + heure horodatée.</div></div></div>
+    <div class="step"><div class="step-num">6</div><div><div class="step-title">Activation ANGAZA</div><div class="step-desc">Scanner SN du kit. Saisir numéro téléphone du bénéficiaire. Valider l'activation en ligne. Attendre confirmation écran (code vert). Si hors ligne : mode file d'attente, activer en batch dans la soirée.</div></div></div>
+    <div class="step"><div class="step-num">7</div><div><div class="step-title">Pose sticker + remise kit</div><div class="step-desc">Coller sticker DECIM/NEA sur le kit. Vérifier contenu emballage. Remettre physiquement au bénéficiaire. Il ne repart pas sans activation confirmée.</div></div></div>
+    <div class="step"><div class="step-num">8</div><div><div class="step-title">Clôture fiche</div><div class="step-desc">Marquer "DISTRIBUÉ" sur le registre papier + numérique. Passer au suivant. Durée cible par bénéficiaire : 5 à 7 minutes.</div></div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Contrôle qualité quotidien — fin de journée (30 min fixes)</div>
+    <table>
+      <thead><tr><th>Contrôle</th><th>Qui</th><th>Action si écart</th></tr></thead>
+      <tbody>
+        <tr><td>Comptage kits distribués = activations ANGAZA</td><td>Chef de site</td><td>Identifier le(s) SN manquants, activer avant 20h</td></tr>
+        <tr><td>Signatures présentes sur tous les émargements</td><td>Chef de site</td><td>Contacter bénéficiaire le lendemain matin</td></tr>
+        <tr><td>Tous les CIN renseignés et lisibles</td><td>Admin</td><td>Signaler sur registre anomalies, tenter rappel</td></tr>
+        <tr><td>Synchro numérique → serveur cloud</td><td>Agent ANGAZA</td><td>Synchro forcée avant départ du site</td></tr>
+        <tr><td>Stock physique = stock théorique</td><td>Logistique</td><td>Alerter chef de site immédiatement</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-title">Gestion des anomalies</div>
+    <table>
+      <thead><tr><th>Situation</th><th>Action immédiate</th><th>Délai max</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge b-err">CIN oubliée</span></td><td>Bénéficiaire repart chercher CIN. Numéro de retour attribué (fin de journée). Kit réservé 24h.</td><td>J+1</td></tr>
+        <tr><td><span class="badge b-err">Absent le jour J</span></td><td>Cocher absent. Conserver sur liste. Redistribution le dernier jour du fokontany ou jour de rattrapage S4.</td><td>Fin S4</td></tr>
+        <tr><td><span class="badge b-warn">Nom non sur liste</span></td><td>Ne pas distribuer. Signaler au chef fokontany. Remonter à mairie. Aucun kit sans validation officielle.</td><td>—</td></tr>
+        <tr><td><span class="badge b-warn">Doublon (même CIN)</span></td><td>Bloquer. Comparer avec liste. Un seul kit par CIN. Signaler au chef de site pour investigation.</td><td>J même</td></tr>
+        <tr><td><span class="badge b-warn">ANGAZA hors ligne</span></td><td>Continuer distribution papier. Activer en batch le soir. Ne pas bloquer la file.</td><td>Soir J</td></tr>
+        <tr><td><span class="badge b-gray">Bénéficiaire refus</span></td><td>Note sur registre. Kit retourné en stock. Signaler à DECIM via rapport journalier.</td><td>J même</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- RISQUES -->
+<div id="tab-risques" class="panel">
+  <div class="card">
+    <div class="card-title">Risques critiques bloquants paiement DECIM</div>
+    <div class="legend">
+      <span><span class="legend-dot r-high"></span>Critique</span>
+      <span><span class="legend-dot r-med"></span>Modéré</span>
+      <span><span class="legend-dot r-low"></span>Faible</span>
+    </div>
+    <div class="risk-row"><div class="risk-dot r-high"></div><div><div class="risk-title">Émargements manquants ou illisibles</div><div class="risk-sol">Double signature (papier + numérique) systématique. Contrôle quotidien chef de site. Aucun kit sorti sans émargement complet. Formulaires de complément à faire signer J+1 maximum.</div></div></div>
+    <div class="risk-row"><div class="risk-dot r-high"></div><div><div class="risk-title">CIN non collectés ou incorrects</div><div class="risk-sol">Champ obligatoire bloquant dans le formulaire numérique. Photo CIN systématique. Si illisible : signalement immédiat + rappel téléphonique. Taux cible : 0 CIN manquant à la clôture.</div></div></div>
+    <div class="risk-row"><div class="risk-dot r-high"></div><div><div class="risk-title">Bénéficiaire distribué hors liste officielle</div><div class="risk-sol">Règle absolue : zéro distribution hors liste. Même sur instruction verbale chef fokontany. Toute modification de liste passe par validation écrite mairie + DIEH avant distribution.</div></div></div>
+    <div class="risk-row"><div class="risk-dot r-high"></div><div><div class="risk-title">Activations ANGAZA non synchronisées au rapport DECIM</div><div class="risk-sol">Synchro obligatoire chaque soir avant clôture du site. Back-up CSV quotidien. 1 responsable data unique par équipe. Rapprochement hebdomadaire ANGAZA vs émargements papier.</div></div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Risques opérationnels et logistiques</div>
+    <div class="risk-row"><div class="risk-dot r-med"></div><div><div class="risk-title">Retard de coordination fokontany / mairie</div><div class="risk-sol">Brief fokontany J-2 minimum. Confirmation téléphonique J-1. Chef de site confirme la présence chef fokontany avant déplacement équipe.</div></div></div>
+    <div class="risk-row"><div class="risk-dot r-med"></div><div><div class="risk-title">Rupture de connectivité ANGAZA sur site</div><div class="risk-sol">Router 4G de secours (Telma + Orange). Mode offline ANGAZA activé par défaut. Activation batch en soirée systématique. Tester couverture lors du brief J-2.</div></div></div>
+    <div class="risk-row"><div class="risk-dot r-med"></div><div><div class="risk-title">Flux de bénéficiaires incontrôlé (foule)</div><div class="risk-sol">Convocation par plages horaires (matin 8h–12h / après-midi 13h–17h). Numérotation à l'entrée. 1 agent logistique dédié à la file. Coordination avec chef fokontany pour communication locale.</div></div></div>
+    <div class="risk-row"><div class="risk-dot r-low"></div><div><div class="risk-title">Stock insuffisant / livraison tardive sur site</div><div class="risk-sol">Stock de 1.5 journée sur site minimum. Réapprovisionnement déclenché à 30% de stock restant. 1 agent logistique anticipe le transport du stock J+1 en fin d'après-midi.</div></div></div>
+    <div class="risk-row"><div class="risk-dot r-low"></div><div><div class="risk-title">Absentéisme agent CDD en cours d'opération</div><div class="risk-sol">Former 2 agents polyvalents capables d'assurer 2 rôles. 1 CDD de réserve identifié et briefé avant démarrage.</div></div></div>
+  </div>
+</div>
+
+<!-- VITESSE -->
+<div id="tab-vitesse" class="panel">
+  <div class="grid3">
+    <div class="metric"><div class="metric-label">Cible journalière (2 équipes)</div><div class="metric-value">160</div><div class="metric-sub">kits/jour en régime normal</div></div>
+    <div class="metric"><div class="metric-label">Kits/semaine (5j)</div><div class="metric-value">800</div><div class="metric-sub">potentiel théorique max</div></div>
+    <div class="metric"><div class="metric-label">Marge sur objectif</div><div class="metric-value">+60%</div><div class="metric-sub">vs 500 kits/sem minimum</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Leviers pour tenir et dépasser 500 kits / semaine</div>
+    <table>
+      <thead><tr><th>Levier</th><th>Gain estimé</th><th>Condition</th></tr></thead>
+      <tbody>
+        <tr><td>Ajouter 1 agent ANGAZA par équipe (goulot principal)</td><td><span class="badge b-ok">+30% débit</span></td><td>Budget CDD disponible. Priorité n°1.</td></tr>
+        <tr><td>Pré-remplissage fiches nominatives J-1</td><td><span class="badge b-ok">+20% vitesse</span></td><td>Liste disponible la veille. Admin prépare les fiches le soir.</td></tr>
+        <tr><td>Convocation par tranches horaires (pas en masse)</td><td><span class="badge b-ok">Moins d'attente</span></td><td>Communication via chef fokontany. SMS si possible.</td></tr>
+        <tr><td>2 équipes convergentes sur fokontany >160 bénéf.</td><td><span class="badge b-ok">-1 jour/zone</span></td><td>Disponibilité simultanée des 2 équipes.</td></tr>
+        <tr><td>Activation ANGAZA offline pendant distribution</td><td><span class="badge b-warn">Évite blocage</span></td><td>Mode offline activé par défaut dès J1.</td></tr>
+        <tr><td>Standardisation poste → temps/bénéf. ≤ 6 min</td><td><span class="badge b-ok">~100 kits/j/équipe</span></td><td>Formation initiale + briefing quotidien 15 min.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-title">Arbitrage centralisé vs décentralisé</div>
+    <table>
+      <thead><tr><th>Aspect</th><th>Recommandation</th><th>Raison</th></tr></thead>
+      <tbody>
+        <tr><td>Stockage kits</td><td><span class="badge b-info">Décentralisé (site)</span></td><td>Stockage limité. Livraison quotidienne ou J-1 pour le lendemain.</td></tr>
+        <tr><td>Validation anomalies liste</td><td><span class="badge b-err">Centralisé (CDI)</span></td><td>Tout écart de liste = validation chef de site uniquement. Aucune exception terrain.</td></tr>
+        <tr><td>Data ANGAZA + synchro</td><td><span class="badge b-err">Centralisé (soir)</span></td><td>Consolidation en soirée par responsable data NEA. Rapport DECIM hebdomadaire.</td></tr>
+        <tr><td>Gestion file bénéficiaires</td><td><span class="badge b-info">Décentralisé (site)</span></td><td>Chef fokontany et agent logistique gèrent localement. Fluidité.</td></tr>
+        <tr><td>Décision report de fokontany</td><td><span class="badge b-err">Centralisé (NEA/CDI)</span></td><td>Impact planning global. Décision remontée au responsable opération.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SUIVI QUOTIDIEN -->
+<div id="tab-suivi" class="panel">
+  <div class="card">
+    <div class="card-title">KPIs quotidiens à suivre</div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-name">Kits distribués / jour</div><div class="kpi-val">≥ 130</div><div class="kpi-freq">Quotidien</div></div>
+      <div class="kpi-card"><div class="kpi-name">Taux activation ANGAZA</div><div class="kpi-val">100%</div><div class="kpi-freq">Quotidien J même</div></div>
+      <div class="kpi-card"><div class="kpi-name">Taux CIN collectés</div><div class="kpi-val">100%</div><div class="kpi-freq">Quotidien</div></div>
+      <div class="kpi-card"><div class="kpi-name">Taux émargement complet</div><div class="kpi-val">100%</div><div class="kpi-freq">Quotidien</div></div>
+      <div class="kpi-card"><div class="kpi-name">Nb anomalies non résolues</div><div class="kpi-val">≤ 5</div><div class="kpi-freq">Cumul J</div></div>
+      <div class="kpi-card"><div class="kpi-name">Avancement cumulé vs cible</div><div class="kpi-val">±0%</div><div class="kpi-freq">Quotidien</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Format de reporting quotidien — message chef de site (envoi 18h max)</div>
+    <div class="mono">
+      RAPPORT J — [DATE] — Fokontany [NOM]<br>
+      ─────────────────────────────────────<br>
+      Kits distribués aujourd'hui : XX<br>
+      Cumul total : XXX / 2020<br>
+      Activations ANGAZA : XX (synchro : OUI/NON)<br>
+      CIN manquants : X (noms : ...)<br>
+      Absents : X (liste jointe)<br>
+      Anomalies bloquantes : X (détail : ...)<br>
+      Stock restant sur site : XX kits<br>
+      ─────────────────────────────────────<br>
+      Fokontany suivant prévu : [NOM] — [DATE]<br>
+      Brief J-2 effectué : OUI/NON<br>
+      Alerte particulière : [texte libre]
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Tableau de bord hebdomadaire</div>
+    <table>
+      <thead><tr><th>Indicateur</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>Kits distribués</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="font-weight:700;">/ 2020</td></tr>
+        <tr><td>Taux activation 100%</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td>cible</td></tr>
+        <tr><td>Anomalies en cours</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td>≤ 0 fin S4</td></tr>
+        <tr><td>Fokontany validés (100%)</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td>12 / 12</td></tr>
+        <tr><td>Écart vs planning</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td style="color:#999">—</td><td>Alerte si >1j</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-title">Seuils d'alerte et escalade</div>
+    <table>
+      <thead><tr><th>Seuil</th><th>Niveau</th><th>Escalade</th></tr></thead>
+      <tbody>
+        <tr><td>Kits/j < 100 (2 jours consécutifs)</td><td><span class="badge b-warn">Orange</span></td><td>Révision planning + renfort équipe</td></tr>
+        <tr><td>Anomalies non résolues > 10 en cumulé</td><td><span class="badge b-warn">Orange</span></td><td>Briefing mairie + DIEH le lendemain matin</td></tr>
+        <tr><td>Activation ANGAZA < 95% en fin de journée</td><td><span class="badge b-err">Rouge</span></td><td>Remontée immédiate NEA Madagascar + action corrective soir même</td></tr>
+        <tr><td>Retard > 3 jours vs planning cumulé</td><td><span class="badge b-err">Rouge</span></td><td>Décision ajout équipe ou extension délai à valider DECIM</td></tr>
+        <tr><td>Distribution hors liste détectée</td><td><span class="badge b-err" style="background:#6b0000;color:#fff;">Critique</span></td><td>Stop distribution. Remontée DG + DECIM. Investigation immédiate.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
